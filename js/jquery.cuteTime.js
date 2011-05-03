@@ -111,7 +111,7 @@
 						
 							e.g. "it was %CT% hours ago"   
 			
-			unit_size:	the divisor to apply to the calculated time difference; if unit_size != 0
+			unit_size:	the divisor to apply to the calculated time difference; if unit_size > 0
 						then a number value is prepended to the cuteness string as calculated by
 						time_difference / unit_size
 							e.g. 4 hours ago
@@ -284,12 +284,18 @@
             // means that the cuteness and unit_size for negative dates must be
             // shifted back one range each.
 			{bound: NEG_INF,
-					cuteness: 'in %CT% years',		unit_size: -60 * 1000 * 60 * 24 * 30 * 12},
-			{bound: -60 * 1000 * 60 * 24 * 30 * 12 * 2, 
+					cuteness: 'in %CT% years',		unit_size: -60 * 1000 * 60 * 24 * 365},
+			{bound: -60 * 1000 * 60 * 24 * 365 * 2, 
 					cuteness: 'next year',			unit_size: 0},
-			{bound: -60 * 1000 * 60 * 24 * 30 * 12, 
+			{bound: -60 * 1000 * 60 * 24 * 365, 
+					cuteness: 'in %CT% weeks',		unit_size: -60 * 1000 * 60 * 24 * 7},
+			{bound: -60 * 1000 * 60 * 24 * 7 * 2, 
+					cuteness: 'in a week',		    unit_size: 0},
+			{bound: -60 * 1000 * 60 * 24 * 7, 
 					cuteness: 'in %CT% days',		unit_size: -60 * 1000 * 60 * 24},
 			{bound: -60 * 1000 * 60 * 24 * 2, 
+					cuteness: 'in a day',		    unit_size: 0},
+			{bound: -60 * 1000 * 60 * 24, 
 					cuteness: 'in %CT% hours',		unit_size: -60 * 1000 * 60},
 			{bound: -60 * 1000 * 60 * 2, 
 					cuteness: 'in an hour',		    unit_size: 0},
@@ -300,8 +306,6 @@
 			{bound: -60 * 1000, 
 					cuteness: 'in a few seconds',	unit_size: 0},
 			{bound: -20 * 1000, 
-					cuteness: 'just now',			unit_size: 0},
-			{bound: 0, 
 					cuteness: 'just now',			unit_size: 0},
 			{bound: 20 * 1000, 
 					cuteness: 'a few seconds ago',	unit_size: 0},
@@ -314,17 +318,17 @@
 			{bound: 60 * 1000 * 60 * 2, 
 					cuteness: ' hours ago',			unit_size: 60 * 1000 * 60},
 			{bound: 60 * 1000 * 60 * 24, 
-					cuteness: 'yesterday',			unit_size: 0},
+					cuteness: 'a day ago',			unit_size: 0},
 			{bound: 60 * 1000 * 60 * 24 * 2, 
 					cuteness: ' days ago',			unit_size: 60 * 1000 * 60 * 24},
-			{bound: 60 * 1000 * 60 * 24 * 30,	
-					cuteness: 'last month',			unit_size: 0},
-			{bound: 60 * 1000 * 60 * 24 * 30 * 2, 
-					cuteness: ' months ago',		unit_size: 60 * 1000 * 60 * 24 * 30},
-			{bound: 60 * 1000 * 60 * 24 * 30 * 12, 
-					cuteness: 'last year',			unit_size: 0},
-			{bound: 60 * 1000 * 60 * 24 * 30 * 12 * 2, 
-					cuteness: ' years ago',			unit_size: 60 * 1000 * 60 * 24 * 30 * 12},
+			{bound: 60 * 1000 * 60 * 24 * 7,	
+					cuteness: 'a week ago',		    unit_size: 0},
+			{bound: 60 * 1000 * 60 * 24 * 7 * 2, 
+					cuteness: ' weeks ago',		    unit_size: 60 * 1000 * 60 * 24 * 7},
+			{bound: 60 * 1000 * 60 * 24 * 365, 
+					cuteness: 'a year ago',			unit_size: 0},
+			{bound: 60 * 1000 * 60 * 24 * 365, 
+					cuteness: ' years ago',			unit_size: 60 * 1000 * 60 * 24 * 365},
 			{bound: POS_INF, 
 					cuteness: 'a blinkle ago',		unit_size: 0}
 		]

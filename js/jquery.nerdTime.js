@@ -495,11 +495,18 @@
         // process the time units -- use only the largest possible
         jQuery.each(units, process_unit);
 
-        nerd_time_str = nerd_time.join(', ');
-        if (is_future) {
-            nerd_time = "in " + nerd_time_str;
+        // if any units were used, create the time string from them
+        if (nerd_time.length > 0) {
+            nerd_time_str = nerd_time.join(', ');
+            if (is_future) {
+                nerd_time = "in " + nerd_time_str;
+            } else {
+                nerd_time = nerd_time_str + " ago";
+            }
+
+        // else, no time unit was small enough or time difference was zero.
         } else {
-            nerd_time = nerd_time_str + " ago";
+            nerd_time = "right now";
         }
 
         return nerd_time;

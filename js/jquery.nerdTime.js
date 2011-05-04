@@ -2,6 +2,7 @@
  * jQuery.nerdTime - cuteTime fork to reformat dates
  *
  * @author Jay Wineinger <jay.wineinger@nerdery.com>
+ * @version 1.0
  * @date 2011-05-03
  *
  * DESCRIPTION

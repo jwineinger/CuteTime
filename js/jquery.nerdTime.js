@@ -223,9 +223,8 @@
                 curr_this = $(this);
                 other_time = get_time_value(curr_this);
                 var nerd_time = get_nerdiness(right_now - other_time);
-                
-                curr_this.html('<ABBR TITLE="'+ get_nerdtime_attr(curr_this) +
-                    '">'+ nerd_time + '</ABBR>');
+                var orig_time = get_nerdtime_attr(curr_this);
+                curr_this.html(get_output(orig_time, nerd_time));
             });
 
             // check for and conditionally launch the automatic refreshing of timestamps
@@ -396,7 +395,9 @@
         $.fn.nerdTime.the_selected.each(function() {
             curr_this = $(this);
             other_time = get_time_value(curr_this);
-            curr_this.html(get_nerdiness(right_now - other_time));
+            var nerd_time = get_nerdiness(right_now - other_time);
+            var orig_time = get_nerdtime_attr(curr_this);
+            curr_this.html(get_output(orig_time, nerd_time));
         });
     }
 
@@ -756,4 +757,16 @@
         return obj.text();
     }
 
+    /**********************************************************************************
+
+        FUNCTION
+            get_output
+
+        DESCRIPTION
+            returns the output to set as the HTML
+
+    **********************************************************************************/
+    function get_output(orig, text) {
+        return "<ABBR TITLE='" + orig + "'>" + text + "</ABBR>";
+    }
 })(jQuery);
